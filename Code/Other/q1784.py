@@ -1,21 +1,26 @@
 from typing import List
 
 
+# 从左（右）上角开始根据当前值的大小对r、l的值进行修改
 def func(matrix: List[List[int]], target: int) -> bool:
-    r = l = 0
-    for i in range(0, len(matrix)):
-        if matrix[i][0] > target:
-            r = i
-            break
-        elif matrix[i][0] == target:
+    if len(matrix) == 0:
+        return False
+    if len(matrix[0]) == 0:
+        return False
+    r = 0
+    l = len(matrix[0]) - 1
+    while True:
+        print(matrix[r][l] == target)
+        if matrix[r][l] == target:
             return True
-    for i in range(0, len(matrix[0])):
-        if matrix[0][i] > target:
-            xl = i
-            break
-        elif matrix[0][i] == target:
-            return True
-    print(r, l)
+        elif matrix[r][l] > target:
+            if l == 0:
+                return False
+            l -= 1
+        else:
+            if r == len(matrix) - 1:
+                return False
+            r += 1
 
 
 if __name__ == '__main__':
@@ -25,4 +30,4 @@ if __name__ == '__main__':
         [3, 6, 9, 16, 22],
         [10, 13, 14, 17, 24],
         [18, 21, 23, 26, 30]]
-    print(func(matrix, 5))
+    print(func([[1, 1]], 25))
