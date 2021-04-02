@@ -25,3 +25,7 @@ class Solution:
         elif N == 3:
             return ret - 6
         return ret
+
+
+test = Solution()
+print(test.clumsy(12))
