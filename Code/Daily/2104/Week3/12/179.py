@@ -1,12 +1,16 @@
+from functools import cmp_to_key
 from typing import List
 
 
 class Solution:
     def largestNumber(self, nums: List[int]) -> str:
-        for i in range(1, len(nums)):
-            for j in range(0, i):
-                if str(nums[i]) + str(nums[j]) > str(nums[j]) + str(nums[i]):
-                    nums[i], nums[j] = nums[j], nums[i]
+        def compare(num1, num2):
+            if str(num1) + str(num2) > str(num2) + str(num1):
+                return -1
+            else:
+                return 1
+        nums.sort(key=cmp_to_key(compare))
+        print(nums)
         if nums[0] == 0:
             return "0"
         ret = ""
