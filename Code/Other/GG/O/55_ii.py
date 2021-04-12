@@ -20,3 +20,10 @@ class Solution:
             return max(leftHeight, rightHeight) + 1
         else:
             return -1
+
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.left.right = TreeNode(3)
+root.left.right.left = TreeNode(4)
+print(Solution().isBalanced(root))
