@@ -15,7 +15,7 @@ class Solution:
                 left += 1
             index = bisect_left(val_li, val - t)  # ?
             print(index, val_li)
-            if val_li and index < len(val_li) and (abs(val_li[index] - val) <= t or abs(val_li[index - 1] - val) <= t):
+            if val_li and index < len(val_li) and abs(val_li[index] - val) <= t:
                 return True
             val_li.add(val)
         return False
