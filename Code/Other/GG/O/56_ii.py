@@ -1,21 +1,22 @@
-a = [4, 8, 7, 6, 1, 5, 3, 9, 2, 0]
-list = [0 for i in range(0, 10)]
+from typing import List
 
 
-def fastSort(l, r, li, ret):
-    num = li[l]
-    if l >= r:
-        return
-    l += 1
-    while l < r:
-        while l < r and li[l] < num:
-            l += 1
-        while l < r and li[r] > num:
-            r -= 1
-        if l == r:
-            break
-        li[l], li[r] = li[r], li[l]
-    print(li)
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        ret = 0
+        bits = [0 for _ in range(32)]
+        for num in nums:
+            i = 0
+            while num > 0:
+                bits[i] += num % 2
+                num >>= 1
+                i += 1
+        print(bits)
+        for i in range(31, -1, -1):
+            ret <<= 1
+            if bits[i] % 3 != 0:
+                ret += 1
+        return ret
 
 
-fastSort(0, len(list), list, [])
+print(Solution().singleNumber([3, 3, 3, 4]))
